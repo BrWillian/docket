@@ -75,11 +75,12 @@ class TrainBrIdModel:
     def train_model(self):
         strategy = self._get_strategy_multigpu()
         train_generator, validation_generator = self._load_dataset()
-        logdir = "logs/scalars/" + datetime.now().strftime("%Y%m%d- %H%M%S")
+        logdir = "logs/scalars/" + str(datetime.now().strftime("%Y%m%d- %H%M%S"))
 
         callbacks = [TensorBoard(log_dir=logdir),
                      ModelCheckpoint(
-                         filepath='Weights/BrazilianID_weights.h5',
+                         filepath='Weights/BrazilianID_weights_' \
+                                  + str(datetime.now().strftime("%Y%m%d- %H%M%S"))+'.h5',
                          monitor='val_loss',
                          save_freq='epoch',
                          save_best_only=True,
