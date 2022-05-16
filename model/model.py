@@ -15,7 +15,7 @@ class BrazilianIdModel:
 
     def get_model(self):
         # Block 1
-        inputs = Input(shape=(150, 150, 3))
+        inputs = Input(shape=(150, 150, 1))
         x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1, 1))(inputs)
         x = Activation(Mish())(x)
         x = BatchNormalization()(x)
@@ -37,7 +37,7 @@ class BrazilianIdModel:
         x = Flatten()(x)
         x = Dense(512)(x)
         x = Activation(Mish())(x)
-        x = Dropout(.2)(x)
+        x = Dropout(.3)(x)
         outputs = Dense(units=8, activation='softmax')(x)
 
         return Model(inputs=[inputs], outputs=[outputs])
