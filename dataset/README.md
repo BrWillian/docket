@@ -1,5 +1,9 @@
 Aqui contem o dataset divididos por subpastas com suas respectivas classes.\
-exemplo:\
+\
+exemplo:
+\
+\
+\
 ├── CNH_Aberta\
 │   └── cnh_aberta_1.jpg\
 ├── CNH_Frente\
@@ -7,4 +11,4 @@ exemplo:\
 ├── CNH_Verso\
 │   └── cnh_verso_1.jpg\
 ...\
-.....\
+.....
