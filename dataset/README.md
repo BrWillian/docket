@@ -1,5 +1,4 @@
 Aqui contem o dataset divididos por subpastas com suas respectivas classes.\
-\
 exemplo:
 \
 \
