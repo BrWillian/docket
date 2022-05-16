@@ -16,7 +16,7 @@ class TrainBrIdModel:
 
     def __init__(self, **kwargs):
         super(TrainBrIdModel, self).__init__()
-        self._dataset_path = kwargs.get("dataset_directory") if kwargs.get("dataset_directory") else "Dataset/"
+        self._dataset_path = kwargs.get("dataset_directory") if kwargs.get("dataset_directory") else "dataset/"
         self._image_size = kwargs.get("image_size") if kwargs.get("image_size") else (150, 150)
         self._batch_size = kwargs.get("batch_size") if kwargs.get("batch_size") else 32
         self._epochs = kwargs.get("epochs") if kwargs.get("epochs") else 5
@@ -79,7 +79,7 @@ class TrainBrIdModel:
 
         callbacks = [TensorBoard(log_dir=logdir),
                      ModelCheckpoint(
-                         filepath='weights/BrazilianID_weights.h5',
+                         filepath='Weights/BrazilianID_weights.h5',
                          monitor='val_loss',
                          save_freq='epoch',
                          save_best_only=True,
@@ -99,6 +99,6 @@ class TrainBrIdModel:
 
 
 if __name__ == "__main__":
-    train_model = TrainBrIdModel(dataset_directory='/home/willian/Projects/docket/BID Dataset/',
+    train_model = TrainBrIdModel(dataset_directory='/home/willian/Projects/docket/BID dataset/',
                                  batch_size=16)
     train_model.train_model()
