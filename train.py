@@ -1,3 +1,5 @@
+import os.path
+
 from model import BrazilianIdModel
 import tensorflow as tf
 from datetime import datetime
@@ -22,6 +24,7 @@ class TrainBrIdModel:
         self._epochs = kwargs.get("epochs") if kwargs.get("epochs") else 5
         self._loss_func = kwargs.get("loss_function") if kwargs.get("loss_function") else 'categorical_crossentropy'
         self._metrics = kwargs.get("metrics") if kwargs.get("metrics") else ["accuracy"]
+        self._verbose = kwargs.get("verbose") if kwargs.get("verbose") else 1
         self._devices = kwargs.get("devices")
 
     def _load_dataset(self):
@@ -30,6 +33,10 @@ class TrainBrIdModel:
         """
         train_datagen = ImageDataGenerator(rescale=1. / 255,
                                            horizontal_flip=True,
+                                           brightness_range=[0.5, 2.0],
+                                           rotation_range=20,
+                                           zoom_range=0.15,
+                                           shear_range=0.15,
                                            validation_split=0.2
                                            )
 
@@ -37,7 +44,7 @@ class TrainBrIdModel:
             directory=self._dataset_path,
             target_size=self._image_size,
             batch_size=self._batch_size,
-            color_mode='rgb',
+            color_mode='grayscale',
             class_mode='categorical',
             subset='training',
             shuffle=True,
@@ -47,7 +54,7 @@ class TrainBrIdModel:
             directory=self._dataset_path,
             target_size=self._image_size,
             batch_size=self._batch_size,
-            color_mode='rgb',
+            color_mode='grayscale',
             class_mode='categorical',
             subset='validation',
             shuffle=True,
@@ -78,11 +85,12 @@ class TrainBrIdModel:
         logdir = "logs/scalars/" + str(datetime.now().strftime("%Y%m%d- %H%M%S"))
 
         callbacks = [TensorBoard(log_dir=logdir),
+                     EarlyStopping(patience=2),
                      ModelCheckpoint(
-                         filepath='Weights/BrazilianID_weights_' \
-                                  + str(datetime.now().strftime("%Y%m%d- %H%M%S"))+'.h5',
+                         filepath='BrazilianID_{epoch:02d}_{val_loss:.4f}.h5',
                          monitor='val_loss',
                          save_freq='epoch',
+                         verbose=self._verbose,
                          save_best_only=True,
                          save_weights_only=False
                      )]
@@ -96,10 +104,10 @@ class TrainBrIdModel:
 
         model.summary()
 
-        model.fit(train_generator, epochs=self._epochs, callbacks=callbacks, validation_data=validation_generator)
+        model.fit(train_generator, epochs=self._epochs, callbacks=callbacks, validation_data=validation_generator, verbose=self._verbose)
 
 
 if __name__ == "__main__":
-    train_model = TrainBrIdModel(dataset_directory='/home/willian/Projects/docket/BID dataset/',
-                                 batch_size=16)
+    train_model = TrainBrIdModel(dataset_directory='/home/willian/Projects/docket/BID Dataset/',
+                                 batch_size=16, epochs=15)
     train_model.train_model()
