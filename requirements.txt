@@ -42,4 +42,4 @@ urllib3==1.26.9
 Werkzeug==2.1.2
 wrapt==1.14.1
 zipp==3.8.0
-googledrivedownloader==0.4
+gdown==4.4.0
