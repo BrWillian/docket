@@ -4,6 +4,7 @@ from model import BrazilianIdModel
 import numpy as np
 from tensorflow.keras.preprocessing import image
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 class EvaluateBrIdModel(object):
     '''
@@ -14,7 +15,7 @@ class EvaluateBrIdModel(object):
     def __init__(self, **kwargs):
         super(EvaluateBrIdModel, self).__init__()
         self._model_path = kwargs.get("path_model") if kwargs.get(
-            "path_model") else "weights/BrazilianID_weights_20220516- 172232.h5"
+            "path_model") else "weights/BrazilianID_01_0.0837.h5"
         self._model = BrazilianIdModel()
         self._classes_names = ['CNH_Aberta', 'CNH_Frente', 'CNH_Verso', 'CPF_Frente', 'CPF_Verso', 'RG_Aberto',
                                'RG_Frente', 'RG_Verso']
@@ -28,7 +29,7 @@ class EvaluateBrIdModel(object):
             if os.path.isfile(filename) and filename.endswith('.jpg'):
                 result = self.get_result_single_image(filename)
 
-                list_of_results.append((filename.split('/')[-1:][0], result))
+                list_of_results.append([filename.split('/')[-1:][0], result])
 
         return list_of_results
 
@@ -38,7 +39,7 @@ class EvaluateBrIdModel(object):
             :param img:
             :return: predict
         """
-        img = image.load_img(img, target_size=(150, 150), color_mode='grayscale', interpolation='bicubic')
+        img = image.load_img(img, target_size=(150, 150), color_mode='rgb')
 
         img = image.img_to_array(img)
 
@@ -55,8 +56,8 @@ if __name__ == "__main__":
     '''
         Debug......
     '''
-    BrIdModel = EvaluateBrIdModel(path_model='weights/BrazilianID_01_0.0837.h5')
-    result = BrIdModel.get_result_from_directory(directory='documentos/')
+    BrIdModel = EvaluateBrIdModel(path_model='weights/BrazilianID.h5')
+    result = BrIdModel.get_result_from_directory(directory='documentos/CNH/')
     # result = BrIdModel.get_result_single_image('/home/willian/PycharmProjects/docket/documentos/CNH_Aberta/aberta.jpg')
 
     print(result)
