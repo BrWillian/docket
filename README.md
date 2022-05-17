@@ -72,15 +72,15 @@ optional arguments:
 * Link para download de forma manual. 
 [Link para download](https://drive.google.com/file/d/1nYNIq7tX8RtP49Y7czGfETtzgTAPFZIH/view?usp=sharing)
 
-* Para realizar treino segue abaixo codigo exemplo.\
+* Para realizar treino segue abaixo código exemplo.\
 `$ python3 main.py --treino --diretorio_dataset=dataset/ --epochs=10 --batch_size=64`
 * O código acima realiza o treino básico, porém podem ser alteradas todas caracteriscas do treino conforme o --help mostra.
 * O modelo a seguir e dotado de 8 classes distintas sendo elas: <pre>'CNH_Aberta', 'CNH_Frente', 'CNH_Verso', 'CPF_Frente', 'CPF_Verso', 'RG_Aberto','RG_Frente', 'RG_Verso'</pre>
 * Para realizar teste temos 2 funções disponíveis um para teste em massa onde terá o returno de uma lista de listas contendo o nome da imagem e o resultado: exemplo <pre>[['imagem1.jpg', 'RG_Frente'],['image2.jpg', 'RG_Verso'] ...]</pre> E outra para inferência de apenas uma imagem.
-* A função para infêrencia em massa será necessário passar o diretorio e todas imagens contendo no diretorio e subdiretorios serão inferidas segue exemplo de uso:\
+* A função para infêrencia em massa será necessário passar o diretório, e todas imagens contendo no diretório e subdiretorios serão inferidas segue exemplo de uso:\
 `$ python3 main.py --no-treino --teste --diretorio_teste=documentos/ --path_model=weights/BrazilianID_07_0.5606.h5`
 * E para inferência de apenas uma imagem segue o exemplo de uso:\
-`$ python3 --no-treino --teste --single_teste='documentos/CNH/eu_frente.jpg'`
+`$ python3 --no-treino --teste --single_teste='documentos/CNH/eu_frente.jpg' --path_model=weights/BrazilianID_07_0.5606.h5`
 
 ## :bulb: Exemplos
 
@@ -101,7 +101,7 @@ optional arguments:
 * Na pasta documentos/ segue algumas imagens exemplo que foram utilizadas em teste.
 
 ### Recomendações
-* Pelo dataset possui apenas imagens rachuradas, é recomendado rachurar para melhor performance. conforme abaixo
+* Pelo dataset possuir apenas imagens rachuradas, é recomendado rachurar para melhor performance. conforme abaixo
 
 > <p align="center"><img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/eu_frente.jpg?raw=true" width="225" hspace="225"><p>
 > <p align="center"> CNH Frente</p>

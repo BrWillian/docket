@@ -47,7 +47,7 @@ def main():
     parser.set_defaults(teste=False)
 
     parser.add_argument('--path_model', type=str, help='Caminho onde está disponivel o modelo para teste.',
-                        default='weights/BrazilianID_01_0.0837.h5')
+                        default='weights/BrazilianID_07_0.5606.h5')
 
     parser.add_argument('--diretorio_teste', type=str,
                         help='Caminho onde está disponivel diretorio para imagens de teste,'
