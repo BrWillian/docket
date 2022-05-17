@@ -68,24 +68,48 @@ optional arguments:
 ### Exemplos de uso
 * Primeiramente deve ser efetuado o download dos pesos padrões.\
 `$ python3 main.py --no-treino --no-teste --download_pesos=True`
+
+* Link para download de forma manual. 
+[Link para download](https://drive.google.com/file/d/1nYNIq7tX8RtP49Y7czGfETtzgTAPFZIH/view?usp=sharing)
+
 * Para realizar treino segue abaixo codigo exemplo.\
 `$ python3 main.py --treino --diretorio_dataset=dataset/ --epochs=10 --batch_size=64`
 * O código acima realiza o treino básico, porém podem ser alteradas todas caracteriscas do treino conforme o --help mostra.
 * O modelo a seguir e dotado de 8 classes distintas sendo elas: <pre>'CNH_Aberta', 'CNH_Frente', 'CNH_Verso', 'CPF_Frente', 'CPF_Verso', 'RG_Aberto','RG_Frente', 'RG_Verso'</pre>
 * Para realizar teste temos 2 funções disponíveis um para teste em massa onde terá o returno de uma lista de listas contendo o nome da imagem infêrida é o resultado: exemplo <pre>[['imagem1.jpg', 'RG_Frente'],['image2.jpg', 'RG_Verso'] ...]</pre> E outra para inferência de apenas uma imagem.
 * A função para infêrencia em massa será necessario passar o diretorio e todas imagens contendo no diretorio e subdiretorios serão inferidas segue exemplo de uso:\
-`$ python3 main.py --no-treino --teste --diretorio_teste=documentos/ --path_model=weights/BrazilianID_02_0.1344.h5`
+`$ python3 main.py --no-treino --teste --diretorio_teste=documentos/ --path_model=weights/BrazilianID_07_0.5606.h5`
 * E para inferência de apenas uma imagem segue o exemplo de uso:\
 `$ python3 --no-treino --teste --single_teste='documentos/CNH/eu_frente.jpg'`
 
+## :bulb: Exemplos
 
 ### Exemplos de imagens
+* As imagens utilizadas neste projeto foram geradas de forma artificial, portando todas imagens apresentadas neste projeto são ficticias ou ofucadas.
+* Segue abaixo alguns modelos de imagens utilizadas quanto no treino e no teste do modelo.
+>\
+<img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/00003644_in.jpg?raw=true" width="200">\
+>CNH Frente
 
+>\
+<img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/00007257_in.jpg?raw=true" width="200">\
+>CNH Verso
+
+>\
+<img src="https://github.com/BrWillian/docket/blob/main/documentos/CPF/00010912_in.jpg?raw=true" width="150">\
+>CPF Frente
+
+>\
+<img src="https://github.com/BrWillian/docket/blob/main/documentos/RG/00025937_in.jpg?raw=true" width="250">\
+>RG Verso
+
+* Todo o dataset possui orientações variadas (vertical, horizontal) e pode ser requisitado para análise.
+* Na pasta documentos/ segue algumas imagens exemplo que foram utilizadas em teste.
 
 ### Recomendações
-* Utilize boas práticas de programação
-* Utilize boas práticas no git (commits pequenos, descrições relevantes)
-
+* Pelo dataset possui apenas imagens rachuradas, é recomendado rachurar para melhor performance. conforme abaixo
+> <img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/eu_frente.jpg?raw=true" width="225">\
+> CNH Frente
 
 Boa sorte! :boom:
 
