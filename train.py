@@ -32,19 +32,15 @@ class TrainBrIdModel:
             Definições para construação do dataset
         """
         train_datagen = ImageDataGenerator(rescale=1. / 255,
-                                           horizontal_flip=True,
-                                           brightness_range=[0.5, 2.0],
-                                           rotation_range=20,
-                                           zoom_range=0.15,
-                                           shear_range=0.15,
-                                           validation_split=0.2
+                                           validation_split=0.25,
+                                           fill_mode='nearest',
                                            )
 
         train_generator = train_datagen.flow_from_directory(
             directory=self._dataset_path,
             target_size=self._image_size,
             batch_size=self._batch_size,
-            color_mode='grayscale',
+            color_mode='rgb',
             class_mode='categorical',
             subset='training',
             shuffle=True,
@@ -54,7 +50,7 @@ class TrainBrIdModel:
             directory=self._dataset_path,
             target_size=self._image_size,
             batch_size=self._batch_size,
-            color_mode='grayscale',
+            color_mode='rgb',
             class_mode='categorical',
             subset='validation',
             shuffle=True,
@@ -87,7 +83,7 @@ class TrainBrIdModel:
         callbacks = [TensorBoard(log_dir=logdir),
                      EarlyStopping(patience=2),
                      ModelCheckpoint(
-                         filepath='BrazilianID_{epoch:02d}_{val_loss:.4f}.h5',
+                         filepath='weights/BrazilianID_{epoch:02d}_{val_loss:.4f}.h5',
                          monitor='val_loss',
                          save_freq='epoch',
                          verbose=self._verbose,
@@ -112,5 +108,5 @@ if __name__ == "__main__":
         Debug......
     '''
     train_model = TrainBrIdModel(dataset_directory='/home/willian/Projects/docket/BID Dataset/',
-                                 batch_size=16, epochs=15)
+                                 batch_size=64, epochs=7)
     train_model.train_model()
