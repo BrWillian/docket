@@ -108,6 +108,9 @@ class TrainBrIdModel:
 
 
 if __name__ == "__main__":
+    '''
+        Debug......
+    '''
     train_model = TrainBrIdModel(dataset_directory='/home/willian/Projects/docket/BID Dataset/',
                                  batch_size=16, epochs=15)
     train_model.train_model()
