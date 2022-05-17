@@ -97,8 +97,8 @@ optional arguments:
 > \
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/CPF/00010912_in.jpg?raw=true" width="150" hspace="75" >
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/RG/00025937_in.jpg?raw=true" width="250">
-> <p align="center">CPF Frente  RG Verso</p>[
-]()
+> <p align="center">CPF Frente  RG Verso</p>
+
 * Todo o dataset possui orientações variadas (vertical, horizontal) e pode ser requisitado para análise.
 * Na pasta documentos/ segue algumas imagens exemplo que foram utilizadas em teste.
 
