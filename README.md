@@ -19,6 +19,7 @@ Este repositorio além dos requisitos proposto pelo desafio contêm outros requi
   * Caracteristicas do modelo.
   * Testes
 
+## :computer: Utilização
 
 ### Modo de utilização
 * Realizar instalação das depêndencias \
