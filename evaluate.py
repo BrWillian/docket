@@ -1,5 +1,5 @@
 import os
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import glob
 from model import BrazilianIdModel
 import numpy as np
 from tensorflow.keras.preprocessing import image
@@ -19,41 +19,19 @@ class EvaluateBrIdModel(object):
         self._model = BrazilianIdModel()
         self._classes_names = ['CNH_Aberta', 'CNH_Frente', 'CNH_Verso', 'CPF_Frente', 'CPF_Verso', 'RG_Aberto', 'RG_Frente', 'RG_Verso']
 
-    def _load_datagen(self, directory):
-        '''
-            Carregar a base de imagens para teste.
-        '''
-
-        test_datagen = ImageDataGenerator(rescale=1. / 255)
-
-        test_generator = test_datagen.flow_from_directory(
-            directory,
-            target_size=(150, 150),
-            batch_size=1,
-            class_mode=None,
-            shuffle=False,
-            color_mode='grayscale'
-        )
-
-        return test_generator
-
     def get_result_from_directory(self, directory):
         '''
             Carrega o modelo e faz a predição utilizando generator do tensorflow para varias imagens.
         '''
-        directory = directory if directory else "documentos/"
+        list_of_results = []
+        for filename in glob.iglob(directory + '**/**', recursive=True):
+            if os.path.isfile(filename) and filename.endswith('.jpg'):
 
-        self._model.load_weights(filepath=self._model_path)
+                result = self.get_result_single_image(filename)
 
-        test_datage = self._load_datagen(directory=directory)
+                list_of_results.append((filename.split('/')[-1:][0], result))
 
-        results = self._model.predict(test_datage)
-
-        res_with_classes = []
-
-        for res in results: res_with_classes.append(self._classes_names[np.argmax(res)])
-
-        return res_with_classes
+        return list_of_results
 
     def get_result_single_image(self, img):
         """
@@ -75,8 +53,11 @@ class EvaluateBrIdModel(object):
 
 
 if __name__ == "__main__":
+    '''
+        Debug......
+    '''
     BrIdModel = EvaluateBrIdModel(path_model='weights/BrazilianID_01_0.0837.h5')
-    result = BrIdModel.get_result_from_directory(directory='/home/willian/PycharmProjects/docket/documentos/')
+    result = BrIdModel.get_result_from_directory(directory='documentos/')
     #result = BrIdModel.get_result_single_image('/home/willian/PycharmProjects/docket/documentos/CNH_Aberta/aberta.jpg')
 
     print(result)
