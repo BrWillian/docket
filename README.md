@@ -105,6 +105,14 @@ optional arguments:
 
 > <p align="center"><img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/eu_frente.jpg?raw=true" width="225" hspace="225"><p>
 > <p align="center"> CNH Frente</p>
+
+### Referências
+* O dataset foi gerado apartir de um paper disponivel em: 
+[Link](https://sol.sbc.org.br/index.php/sibgrapi_estendido/article/view/12997)
+* Todo a codificação está presente na documentação do tensorflow disponivel em:
+[Link](https://www.tensorflow.org/api_docs)
+
+
 Boa sorte! :boom:
 
 ---
