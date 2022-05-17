@@ -30,7 +30,7 @@ def main():
 
     parser.add_argument('--metrics', type=list, help='metricas utilizadas para efeturar treino.'
                                                      ' (todas disponiveis de acordo com '
-                                                     'a documentação do tensorflow.', default='accuracy')
+                                                     'a documentação do tensorflow.', default=['accuracy'])
 
     parser.add_argument('--verbose', type=int, help='Nivel de verbosidade para treino (0, 1, 2).', default=1)
 
@@ -53,7 +53,15 @@ def main():
 
     args = parser.parse_args()
 
+    if args.treino:
+        train_model = TrainBrIdModel(dataset_directory=args.dataset_directory, image_size=args.image_size,
+                                     batch_size=args.batch_size, epochs=args.epochs, loss_function=args.loss_function,
+                                     metrics=args.metrics, verbose=args.verbose, devices=args.devices)
+        train_model.train_model()
+
     if args.teste:
+        os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+
         BrIdModel = EvaluateBrIdModel(path_model=args.path_model)
 
         if args.teste_varias:
