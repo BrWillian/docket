@@ -4,8 +4,6 @@ from model import BrazilianIdModel
 import numpy as np
 from tensorflow.keras.preprocessing import image
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
-
 
 class EvaluateBrIdModel(object):
     '''
@@ -15,9 +13,11 @@ class EvaluateBrIdModel(object):
 
     def __init__(self, **kwargs):
         super(EvaluateBrIdModel, self).__init__()
-        self._model_path = kwargs.get("path_model") if kwargs.get("path_model") else "weights/BrazilianID_weights_20220516- 172232.h5"
+        self._model_path = kwargs.get("path_model") if kwargs.get(
+            "path_model") else "weights/BrazilianID_weights_20220516- 172232.h5"
         self._model = BrazilianIdModel()
-        self._classes_names = ['CNH_Aberta', 'CNH_Frente', 'CNH_Verso', 'CPF_Frente', 'CPF_Verso', 'RG_Aberto', 'RG_Frente', 'RG_Verso']
+        self._classes_names = ['CNH_Aberta', 'CNH_Frente', 'CNH_Verso', 'CPF_Frente', 'CPF_Verso', 'RG_Aberto',
+                               'RG_Frente', 'RG_Verso']
 
     def get_result_from_directory(self, directory):
         '''
@@ -26,7 +26,6 @@ class EvaluateBrIdModel(object):
         list_of_results = []
         for filename in glob.iglob(directory + '**/**', recursive=True):
             if os.path.isfile(filename) and filename.endswith('.jpg'):
-
                 result = self.get_result_single_image(filename)
 
                 list_of_results.append((filename.split('/')[-1:][0], result))
@@ -58,6 +57,6 @@ if __name__ == "__main__":
     '''
     BrIdModel = EvaluateBrIdModel(path_model='weights/BrazilianID_01_0.0837.h5')
     result = BrIdModel.get_result_from_directory(directory='documentos/')
-    #result = BrIdModel.get_result_single_image('/home/willian/PycharmProjects/docket/documentos/CNH_Aberta/aberta.jpg')
+    # result = BrIdModel.get_result_single_image('/home/willian/PycharmProjects/docket/documentos/CNH_Aberta/aberta.jpg')
 
     print(result)
