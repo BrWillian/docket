@@ -4,7 +4,7 @@ from evaluate import EvaluateBrIdModel
 import os
 import tensorflow as tf
 import argparse
-from google_drive_downloader import GoogleDriveDownloader as gdd
+import gdown
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
@@ -65,10 +65,13 @@ def main():
         '''
             @@Author Willian Antunes
             link para download dos pesos.
-            https://drive.google.com/file/d/1nYNIq7tX8RtP49Y7czGfETtzgTAPFZIH/view?usp=sharing
+            https://drive.google.com/u/0/uc?id=1nYNIq7tX8RtP49Y7czGfETtzgTAPFZIH
         '''
-        gdd.download_file_from_google_drive(file_id='1nYNIq7tX8RtP49Y7czGfETtzgTAPFZIH',
-                                            dest_path='weights/BrazilianID_07_0.5606.h5')
+
+        url = 'https://drive.google.com/u/0/uc?id=1nYNIq7tX8RtP49Y7czGfETtzgTAPFZIH'
+        output = './weights/BrazilianID_07_0.5606.h5'
+        gdown.download(url, output, quiet=False)
+
 
     if args.treino:
         train_model = TrainBrIdModel(dataset_directory=args.diretorio_dataset, image_size=args.image_size,
