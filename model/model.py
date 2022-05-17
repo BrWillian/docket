@@ -4,6 +4,7 @@ import tensorflow as tf
 from tensorflow.keras import Model
 from tensorflow.keras.layers import Input, Conv2D, Activation, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
 from model.activations import Mish
+from tensorflow.keras.regularizers import l2
 __version__ = "1.0.0"
 __author__ = "Willian Antunes"
 
@@ -15,7 +16,7 @@ class BrazilianIdModel:
 
     def get_model(self):
         # Block 1
-        inputs = Input(shape=(150, 150, 1))
+        inputs = Input(shape=(150, 150, 3))
         x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1, 1))(inputs)
         x = Activation(Mish())(x)
         x = BatchNormalization()(x)
@@ -29,13 +30,13 @@ class BrazilianIdModel:
 
         # Block 3
         x = Conv2D(filters=64, kernel_size=(3, 3), strides=(1, 1))(x)
-        x = BatchNormalization()(x)
         x = Activation(Mish())(x)
+        x = BatchNormalization()(x)
         x = MaxPooling2D(pool_size=(2, 2))(x)
 
         # Block 4
         x = Flatten()(x)
-        x = Dense(512)(x)
+        x = Dense(512, kernel_regularizer=l2(0.01), bias_regularizer=l2(0.01))(x)
         x = Activation(Mish())(x)
         x = Dropout(.3)(x)
         outputs = Dense(units=8, activation='softmax')(x)
