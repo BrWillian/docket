@@ -88,13 +88,11 @@ optional arguments:
 * As imagens utilizadas neste projeto foram geradas de forma artificial, portando todas imagens apresentadas neste projeto são ficticias ou ofucadas.
 * Segue abaixo alguns modelos de imagens utilizadas quanto no treino e no teste do modelo.
 
-> \
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/00003644_in.jpg?raw=true" hspace="50" width="250">
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/00007257_in.jpg?raw=true" width="250"><p>
-> <center>CNH Frente Verso</center>
+> <p align="center">CNH Frente Verso</p>
 
 
-> \
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/CPF/00010912_in.jpg?raw=true" width="150" hspace="75" >
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/RG/00025937_in.jpg?raw=true" width="250">
 > <p align="center">CPF Frente  RG Verso</p>
@@ -104,8 +102,8 @@ optional arguments:
 
 ### Recomendações
 * Pelo dataset possui apenas imagens rachuradas, é recomendado rachurar para melhor performance. conforme abaixo
-> \
-> <img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/eu_frente.jpg?raw=true" width="225" hspace="225"><p>
+
+> <p align="center"><img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/eu_frente.jpg?raw=true" width="225" hspace="225"><p>
 > <p align="center"> CNH Frente</p>
 Boa sorte! :boom:
 
