@@ -97,8 +97,8 @@ optional arguments:
 > \
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/CPF/00010912_in.jpg?raw=true" width="150" hspace="75" >
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/RG/00025937_in.jpg?raw=true" width="250">
-> <center>CPF Frente  RG Verso</center>
-
+> <p align="center">CPF Frente  RG Verso</p>[
+]()
 * Todo o dataset possui orientações variadas (vertical, horizontal) e pode ser requisitado para análise.
 * Na pasta documentos/ segue algumas imagens exemplo que foram utilizadas em teste.
 
@@ -106,7 +106,7 @@ optional arguments:
 * Pelo dataset possui apenas imagens rachuradas, é recomendado rachurar para melhor performance. conforme abaixo
 > \
 > <img src="https://github.com/BrWillian/docket/blob/main/documentos/CNH/eu_frente.jpg?raw=true" width="225" hspace="225"><p>
-> <center> CNH Frente</center>
+> <p align="center"> CNH Frente</p>
 Boa sorte! :boom:
 
 ---
