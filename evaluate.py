@@ -25,8 +25,9 @@ class EvaluateBrIdModel(object):
             Carrega o modelo e faz a predição utilizando generator do tensorflow para varias imagens.
         '''
         list_of_results = []
+        format = ['.jpg', '.jpeg', '.png']
         for filename in glob.iglob(directory + '**/**', recursive=True):
-            if os.path.isfile(filename) and filename.endswith('.jpg'):
+            if os.path.isfile(filename) and filename.endswith(tuple(format)):
                 result = self.get_result_single_image(filename)
 
                 list_of_results.append([filename.split('/')[-1:][0], result])

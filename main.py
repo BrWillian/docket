@@ -67,12 +67,11 @@ def main():
             link para download dos pesos.
             https://drive.google.com/u/0/uc?id=1nYNIq7tX8RtP49Y7czGfETtzgTAPFZIH
         '''
-        if not os.path.isfile('weights/BrazilianID_07_0.5606.h5'):
 
+        if not os.path.isfile('weights/BrazilianID_07_0.5606.h5'):
             url = 'https://drive.google.com/u/0/uc?id=1nYNIq7tX8RtP49Y7czGfETtzgTAPFZIH'
             output = './weights/BrazilianID_07_0.5606.h5'
             gdown.download(url, output, quiet=False)
-
 
     if args.treino:
         train_model = TrainBrIdModel(dataset_directory=args.diretorio_dataset, image_size=args.image_size,
