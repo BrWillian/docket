@@ -1,4 +1,4 @@
-# Desafio Docket
+# Classificação de documentos.
 
 Bem-vindo/a ao repositorio contendo esse desafio.  
 
